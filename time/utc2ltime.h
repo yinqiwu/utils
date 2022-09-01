@@ -22,8 +22,16 @@
 #ifndef __UTC2LTIME_H__
 #define __UTC2LTIME_H__
 
+#ifndef DEBUG
+#define LOG printf
+#else
+#define LOG 
+#endif
+
 /**
  * @brief Localtime time after conversion
+ * 
+ * 
  * 
  */
 typedef struct _local_time {
@@ -43,5 +51,9 @@ typedef struct _local_time {
  * @return local_time If there is an error, all data in the return value is 0, and the other returns normal data
  */
 local_time utc_to_localtime(long ts, int time_zone);
+
+
+
+
 
 #endif

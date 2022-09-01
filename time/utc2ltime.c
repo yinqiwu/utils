@@ -19,8 +19,10 @@
  * @endverbatim
  * @attention
  */
-#include "system_api.h"
 #include "utc2ltime.h"
+#include "string.h"
+#include "stdio.h"
+
 
 #define UTC_BASE_YEAR 1970
 #define MONTH_PER_YEAR 12
@@ -130,7 +132,6 @@ local_time utc_to_localtime(long ts, int time_zone)
         }
     }
     year = yearTmp;
-
     //这个时间戳值的月
     int monthTmp = 0;
     for (monthTmp = 1; monthTmp < MONTH_PER_YEAR; monthTmp++)
@@ -146,9 +147,7 @@ local_time utc_to_localtime(long ts, int time_zone)
         }
     }
     month = monthTmp;
-
     day = days + 1;
-
     //转化成秒。
     int secs = ts % SEC_PER_DAY;
     //这个时间戳值的小时数。
@@ -158,9 +157,7 @@ local_time utc_to_localtime(long ts, int time_zone)
     minute = secs / SEC_PER_MIN;
     //这个时间戳的秒钟数。
     second = secs % SEC_PER_MIN;
-
-    logi("%d-%d-%d %d:%d:%d\n\n", year, month, day, hour, minute, second);
-    
+    LOG("%02d-%02d-%02d %02d:%02d:%02d\n\n", year, month, day, hour, minute, second);
     time.year = year;
     time.month = month;
     time.day = day;
